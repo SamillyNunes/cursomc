@@ -27,6 +27,7 @@ public class CursomcApplication implements CommandLineRunner{ //Essa interface i
 
 	@Override
 	public void run(String... args) throws Exception { //metodo que executa algumas acoes quando o programa inicia
+														// Acoes: Fazer com que o programa salve algumas infor no BD automaticamente para serem usadas posteriormente
 		Categoria cat1 = new Categoria(null,"Informática");
 		Categoria cat2 = new Categoria(null,"Escritório");
 		
