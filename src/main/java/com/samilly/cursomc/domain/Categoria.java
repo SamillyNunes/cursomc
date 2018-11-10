@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 public class Categoria implements Serializable{ //Ao implementar isso, diz que pode transformar em bites
 	private static final long serialVersionUID = 1L;
@@ -20,8 +18,7 @@ public class Categoria implements Serializable{ //Ao implementar isso, diz que p
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //Gera o valor automatico para ids
 	private Integer id;
 	private String nome;
-	
-	@JsonManagedReference //Avisa que ta tudo bem em serializar os produtos. Referencia gerenciada pelo JSON. Faz isso no lado que quer que venha os objetos associados
+		
 	@ManyToMany(mappedBy="categorias") // o mappedBy eh para nao ter que repetir o mapeamento que esta em Produtos, sendo assim ele informa em cima de qual atributo foi mapeado, como, no caso, eh a mesma coisa
 	private List<Produto> produtos = new ArrayList<>();
 	
