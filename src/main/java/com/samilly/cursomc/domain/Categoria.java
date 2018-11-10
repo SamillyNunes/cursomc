@@ -1,11 +1,14 @@
 package com.samilly.cursomc.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Categoria implements Serializable{ //Ao implementar isso, diz que pode transformar em bites
@@ -16,12 +19,23 @@ public class Categoria implements Serializable{ //Ao implementar isso, diz que p
 	private Integer id;
 	private String nome;
 	
+	@ManyToMany(mappedBy="categorias") // o mappedBy eh para nao ter que repetir o mapeamento que esta em Produtos, sendo assim ele informa em cima de qual atributo foi mapeado, como, no caso, eh a mesma coisa
+	private List<Produto> produtos = new ArrayList<>();
+	
 	private Categoria() {}
 
 	public Categoria(Integer id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
+	}
+	
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
 	}
 
 	public Integer getId() {
@@ -64,6 +78,8 @@ public class Categoria implements Serializable{ //Ao implementar isso, diz que p
 			return false;
 		return true;
 	}
+
+	
 	
 	
 }
